@@ -3,7 +3,7 @@ import Category from "../Components/Category/Category";
 import CategoryDetails from "../Components/Category/CategoryDetails";
 import Courses from "../Components/Courses/Courses";
 import Login from "../Components/Login/Login";
-import PremiumPage from "../Components/PremiumPage/PremiumPage";
+import PremiumPage from "../Components/PremiumPage/PremiumPage.js";
 import Signup from "../Components/SignUp/Signup";
 import Main from "../Layout/Main";
 
