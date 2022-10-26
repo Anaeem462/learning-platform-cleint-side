@@ -15,7 +15,7 @@ const Course = ({ courses }) => {
     number,
   } = courses;
   return (
-    <div className="col-4 my-4">
+    <div className="col-xl-4 col-lg-6 col-sm-12 my-4">
       <Card style={{ width: "18rem" }}>
         <div style={{ backgroundColor: "#e8e9e9" }}>
           <Card.Img
