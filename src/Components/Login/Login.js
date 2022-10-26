@@ -13,7 +13,7 @@ const Login = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
-  const from = location.state.from.pathname || "/";
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +63,8 @@ const Login = () => {
         console.log("github sign in error:", error);
       });
   };
+  //4.reset or forget password
+  const handleResetPass = () => {};
   return (
     <div className="login-container">
       <div className="login-title">
@@ -107,6 +109,9 @@ const Login = () => {
       >
         <FaGithubAlt></FaGithubAlt>
       </button>
+      <span onClick={handleResetPass} className="text-primary ms-2">
+        forget password ?
+      </span>
     </div>
   );
 };

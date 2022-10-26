@@ -1,54 +1,32 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthContext/AuthProvider";
-import Card from "react-bootstrap/Card";
 
 const PremiumPage = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
-
+  const data = useLoaderData();
+  // console.log(data);
+  const { _id, details, image_url, title, category_id } = data;
   return (
-    <div className="w-100 h-100 d-flex align-items-center justify-content-center mt-5">
-      <Card style={{ width: "25rem" }} className="shadow-lg">
-        <Card.Body>
-          <Card.Title>
-            <span className="text-dark fs-5 font-extrabold">User: </span>
-            <span className="text-success fs-6 ">{user?.displayName}</span>
-          </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            <img src={user?.photURL} alt="" />
-          </Card.Subtitle>
-          <Card.Text>
-            <p>
-              <span className="text-dark fs-5 font-extrabold">Email: </span>
-              <span className="text-success fs-6 ">{user?.email}</span>
-            </p>
-            <p>
-              emailverified:{" "}
-              {user?.emailVerified ? (
-                <span className="text-warning">not-verified</span>
-              ) : (
-                <span className="text-success">verified</span>
-              )}
-            </p>
-            <p>
-              <span className="text-dark fs-5 font-extrabold">id: </span>
-              <span className="text-success fs-6 ">{user?.uid}</span>
-            </p>
-            <p>
-              <span className="text-dark fs-5 font-extrabold">photoUrl: </span>
-              <span className="text-success fs-6 ">
-                {user?.photURL || "empty"}
-              </span>
-            </p>
-            <p>
-              <span className="text-dark fs-5 font-extrabold">Number: </span>
-              <span className="text-success fs-6 ">
-                {user?.phoneNumber || "not set number"}
-              </span>
-            </p>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+    <div className="p-4 text-center m-5 rounded shadow-lg ">
+      <div className="row">
+        <img className="col-1" src={image_url} alt="" />
+        <div className="col-10">
+          <h1 className=" text-success">
+            {user?.displayName || "Your"} Package{" "}
+          </h1>
+          <img src={user?.photoURL} alt="" />
+        </div>
+        <img className="col-1" src={image_url} alt="" />
+      </div>
+      <hr />
+      <h2>
+        Package name: <span className="text-success">{title}</span>
+      </h2>
+      <p>
+        Package id: <span className="text-success">{_id}</span>
+      </p>
     </div>
   );
 };

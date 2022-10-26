@@ -7,7 +7,7 @@ import { FaDownload } from "react-icons/fa";
 const CategoryDetails = () => {
   const category = useLoaderData();
   // console.log(category);
-  const { title, thumbnail_url, details } = category;
+  const { title, thumbnail_url, details, _id } = category;
   return (
     <div>
       <Card className="m-5">
@@ -26,7 +26,7 @@ const CategoryDetails = () => {
             className="p-2"
           />
           <Card.Text>{details}</Card.Text>
-          <Link to="/premium-page" className="text-decoration-none">
+          <Link to={`/premiumPage/${_id}`} className="text-decoration-none">
             {" "}
             <Button className="w-100">Get premium access</Button>
           </Link>
