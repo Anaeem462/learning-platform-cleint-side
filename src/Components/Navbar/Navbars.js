@@ -8,16 +8,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button, Image, NavbarBrand } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Navbars = () => {
   const { user, logOut } = useContext(AuthContext);
   const signOut = () => {
     logOut()
       .then((result) => {
-        alert("Log Ourt successfully");
+        toast.success("Log Out successfully");
       })
       .catch((error) => {
-        alert("log out error", error);
+        toast.warning("log Out error");
       });
   };
   return (
@@ -25,7 +26,14 @@ const Navbars = () => {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>
-            <NavLink to="/" className="text-light text-decoration-none me-3">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary text-decoration-none me-3"
+                  : "text-light text-decoration-none me-3"
+              }
+            >
               <Image
                 src="./courselogo.png"
                 alt=""
@@ -91,7 +99,7 @@ const Navbars = () => {
               </Nav>
               <Nav>
                 <NavLink
-                  to="/theme"
+                  to="/courses"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary text-decoration-none me-3"
@@ -120,11 +128,7 @@ const Navbars = () => {
                     )}
                     <button
                       onClick={signOut}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-primary text-decoration-none me-3"
-                          : "text-light text-decoration-none me-3"
-                      }
+                      className="bg-dark text-light ms-2 border-0"
                     >
                       Log out
                     </button>

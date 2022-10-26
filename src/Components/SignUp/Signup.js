@@ -5,10 +5,11 @@ import { FaGoogle } from "react-icons/fa";
 import { FaGithubAlt } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthProvider";
-
+import { toast } from "react-toastify";
 const Signup = () => {
   const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,28 +24,38 @@ const Signup = () => {
       .then((result) => {
         console.log(result.user);
         navigate("/");
+        toast.success("sign up successfully");
         form.reset();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        toast.warning("sign up error", error.message);
+      });
   };
 
   //2. sign up with google
   const handlegoogleSignin = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
+        toast.success("google sign up successfully");
         navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.warning("google sign up error");
+        // console.log(error);
+      });
   };
   //3.sign up with github
   const handleGithubSignin = () => {
     githubSignIn()
       .then((result) => {
         console.log("github log in: ", result.user);
+        toast.success("github sign up successfully");
         navigate("/");
       })
       .catch((error) => {
+        toast.warning("github sign up error");
         console.log("github sign in error:", error);
       });
   };

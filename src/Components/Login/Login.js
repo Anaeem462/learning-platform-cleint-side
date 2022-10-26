@@ -5,6 +5,7 @@ import { FaGithubAlt, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext/AuthProvider";
 import "./login.css";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const Login = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,10 +26,12 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         form.reset();
+        toast.success("Successfully log in!");
         navigate(location.state.form.pathname, { replace: true });
       })
       .catch((error) => {
         setErrors(error.message);
+        toast.warning("log in error!", error.message);
         form.reset();
       });
   };
@@ -37,18 +41,24 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        toast.success("successfull google sign in");
         navigate(location.state.form.pathname, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        toast.warning("google sign in error");
+      });
   };
   //3.sign up with github
   const handleGithubSignin = () => {
     githubSignIn()
       .then((result) => {
         console.log("github log in: ", result.user);
+        toast.success("successfully github sign in");
         navigate(location.state.form.pathname, { replace: true });
       })
       .catch((error) => {
+        toast.warning("github sign in  error");
         console.log("github sign in error:", error);
       });
   };
