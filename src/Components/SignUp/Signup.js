@@ -1,5 +1,5 @@
 import { SiGnuprivacyguard } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ".././Login/login.css";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithubAlt } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { AuthContext } from "../../AuthContext/AuthProvider";
 
 const Signup = () => {
   const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,6 +22,7 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate("/");
         form.reset();
       })
       .catch((error) => console.log(error));
@@ -32,6 +33,7 @@ const Signup = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -40,6 +42,7 @@ const Signup = () => {
     githubSignIn()
       .then((result) => {
         console.log("github log in: ", result.user);
+        navigate("/");
       })
       .catch((error) => {
         console.log("github sign in error:", error);

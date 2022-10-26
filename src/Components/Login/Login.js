@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { BiLogInCircle } from "react-icons/bi";
 import { FaGithubAlt, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthContext/AuthProvider";
 import "./login.css";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,6 +21,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         form.reset();
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -27,6 +30,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -35,6 +39,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         console.log("github log in: ", result.user);
+        navigate("/");
       })
       .catch((error) => {
         console.log("github sign in error:", error);

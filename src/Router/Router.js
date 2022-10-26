@@ -6,6 +6,7 @@ import Login from "../Components/Login/Login";
 import PremiumPage from "../Components/PremiumPage/PremiumPage.js";
 import Signup from "../Components/SignUp/Signup";
 import Main from "../Layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/premium-page",
-        element: <PremiumPage></PremiumPage>,
+        element: (
+          <PrivateRoute>
+            <PremiumPage></PremiumPage>
+          </PrivateRoute>
+        ),
       },
     ],
   },

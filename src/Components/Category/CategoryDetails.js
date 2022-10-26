@@ -6,7 +6,7 @@ import { FaDownload } from "react-icons/fa";
 
 const CategoryDetails = () => {
   const category = useLoaderData();
-  console.log(category);
+  // console.log(category);
   const { title, thumbnail_url, details } = category;
   return (
     <div>
