@@ -8,12 +8,14 @@ import "./login.css";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn, resetPass } =
+    useContext(AuthContext);
   const [errors, setErrors] = useState("");
   const location = useLocation();
 
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
+  const [inputEmail, setInputEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,7 +66,21 @@ const Login = () => {
       });
   };
   //4.reset or forget password
-  const handleResetPass = () => {};
+  const handleResetPass = () => {
+    if (!inputEmail) {
+      toast.warning("please! input an email");
+    } else {
+      resetPass(inputEmail)
+        .then((result) => {
+          console.log(result.use);
+          toast.success("please check your email and set new password");
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.warning("sorry! password reset error");
+        });
+    }
+  };
   return (
     <div className="login-container">
       <div className="login-title">
@@ -74,6 +90,7 @@ const Login = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <label className="login-label">Email</label>
         <input
+          onBlur={(e) => setInputEmail(e.target.value)}
           required
           name="email"
           className="login-input"
@@ -109,9 +126,13 @@ const Login = () => {
       >
         <FaGithubAlt></FaGithubAlt>
       </button>
-      <span onClick={handleResetPass} className="text-primary ms-2">
+
+      <Link
+        onClick={handleResetPass}
+        className="text-primary text-decoration-none ms-2"
+      >
         forget password ?
-      </span>
+      </Link>
     </div>
   );
 };
