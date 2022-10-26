@@ -34,11 +34,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/premium-page",
-        element: (
-          <PrivateRoute>
-            <PremiumPage></PremiumPage>
-          </PrivateRoute>
-        ),
+        element: <PremiumPage></PremiumPage>,
       },
     ],
   },

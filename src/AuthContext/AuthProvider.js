@@ -23,36 +23,30 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
-    setLoading(true);
+    setLoading(false);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
-    setLoading(true);
+    setLoading(false);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const googleSignIn = () => {
-    setLoading(true);
+    setLoading(false);
     return signInWithPopup(auth, googleProvider);
   };
   const githubSignIn = () => {
-    setLoading(true);
+    setLoading(false);
     return signInWithPopup(auth, githubProvider);
   };
   const logOut = () => {
-    setLoading(true);
+    setLoading(false);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        setUser(currentUser);
-        setLoading(false);
-        // ...
-      } else {
-      }
+      setUser(currentUser);
+      setLoading(true);
     });
     return () => unsubscribe();
   }, []);

@@ -7,7 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  if (loading) {
+  if (!loading) {
     return (
       <>
         <div className="text-center h-100">
@@ -20,9 +20,9 @@ const PrivateRoute = ({ children }) => {
   }
   if (user && user.Uid) {
     return children;
+  } else {
+    return <Navigate to="/login" state={{ form: location }} replace></Navigate>;
   }
-
-  return <Navigate to="/login" state={{ form: location }} replace></Navigate>;
 };
 
 export default PrivateRoute;

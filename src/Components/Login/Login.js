@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 import { BiLogInCircle } from "react-icons/bi";
 import { FaGithubAlt, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,7 +8,9 @@ import "./login.css";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const [errors, setErrors] = useState("");
   const location = useLocation();
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,16 +24,20 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         form.reset();
-        navigate("/");
+        navigate(location.state.form.pathname, { replace: true });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setErrors(error.message);
+        form.reset();
+      });
   };
+
   //2.sign up with google
   const handlegoogleSignin = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
-        navigate("/");
+        navigate(location.state.form.pathname, { replace: true });
       })
       .catch((error) => console.log(error));
   };
@@ -39,7 +46,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         console.log("github log in: ", result.user);
-        navigate("/");
+        navigate(location.state.form.pathname, { replace: true });
       })
       .catch((error) => {
         console.log("github sign in error:", error);
@@ -67,6 +74,7 @@ const Login = () => {
           type="password"
           placeholder="password"
         />
+        {errors && <p className="error-message">{errors}</p>}
         <button className="login-btn">Login</button>
 
         <p className="text-light mt-2">
