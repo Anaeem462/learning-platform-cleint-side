@@ -1,21 +1,67 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BiLogInCircle } from "react-icons/bi";
 import { FaGithubAlt, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthContext/AuthProvider";
 import "./login.css";
 
 const Login = () => {
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    //1. sign in email & password
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        form.reset();
+      })
+      .catch((error) => console.log(error));
+  };
+  //2.sign up with google
+  const handlegoogleSignin = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => console.log(error));
+  };
+  //3.sign up with github
+  const handleGithubSignin = () => {
+    githubSignIn()
+      .then((result) => {
+        console.log("github log in: ", result.user);
+      })
+      .catch((error) => {
+        console.log("github sign in error:", error);
+      });
+  };
   return (
     <div className="login-container">
       <div className="login-title">
         Login
         <BiLogInCircle />
       </div>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <label className="login-label">Email</label>
-        <input className="login-input" type="text" placeholder="Your Email" />
+        <input
+          required
+          name="email"
+          className="login-input"
+          type="email"
+          placeholder="Your Email"
+        />
         <label className="login-label">Password</label>
-        <input className="login-input" type="password" placeholder="password" />
+        <input
+          name="password"
+          className="login-input"
+          type="password"
+          placeholder="password"
+        />
         <button className="login-btn">Login</button>
 
         <p className="text-light mt-2">
@@ -25,10 +71,16 @@ const Login = () => {
           </Link>
         </p>
       </form>
-      <button className="me-3 bg-primary border-0 p-2 px-3 rounded text-light">
+      <button
+        onClick={handlegoogleSignin}
+        className="me-3 bg-primary border-0 p-2 px-3 rounded text-light"
+      >
         <FaGoogle></FaGoogle>
       </button>
-      <button className="ms-3 bg-primary border-0 p-2 px-3 rounded text-light">
+      <button
+        onClick={handleGithubSignin}
+        className="ms-3 bg-primary border-0 p-2 px-3 rounded text-light"
+      >
         <FaGithubAlt></FaGithubAlt>
       </button>
     </div>

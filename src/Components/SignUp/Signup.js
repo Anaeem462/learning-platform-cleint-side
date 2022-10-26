@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthProvider";
 
 const Signup = () => {
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, googleSignIn, githubSignIn } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const Signup = () => {
     const photoUrl = form.photoUrl.value;
     console.log(name, email, password, photoUrl);
 
-    //1. sign in email & password
+    //1. sign up email & password
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
@@ -27,13 +27,23 @@ const Signup = () => {
       .catch((error) => console.log(error));
   };
 
-  //2. sign in with google
+  //2. sign up with google
   const handlegoogleSignin = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
       })
       .catch((error) => console.log(error));
+  };
+  //3.sign up with github
+  const handleGithubSignin = () => {
+    githubSignIn()
+      .then((result) => {
+        console.log("github log in: ", result.user);
+      })
+      .catch((error) => {
+        console.log("github sign in error:", error);
+      });
   };
   return (
     <div className="signup-container">
@@ -89,7 +99,10 @@ const Signup = () => {
       >
         <FaGoogle></FaGoogle>
       </button>
-      <button className="ms-3 bg-primary border-0 p-2 px-3 rounded text-light">
+      <button
+        onClick={handleGithubSignin}
+        className="ms-3 bg-primary border-0 p-2 px-3 rounded text-light"
+      >
         <FaGithubAlt></FaGithubAlt>
       </button>
     </div>

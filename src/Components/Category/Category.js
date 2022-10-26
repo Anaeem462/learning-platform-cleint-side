@@ -4,14 +4,14 @@ import CategoryDetails from "./CategoryDetails";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
-  console.log(categories);
+  // console.log(categories);
   useEffect(() => {
     fetch("https://course-server.vercel.app/category")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
 
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="">
       <h1 className="text-center mb-3">All Category</h1>
