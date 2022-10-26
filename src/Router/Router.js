@@ -7,12 +7,24 @@ import PremiumPage from "../Components/PremiumPage/PremiumPage.js";
 import Signup from "../Components/SignUp/Signup";
 import Main from "../Layout/Main";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "./../Components/Error-page/ErrorPage";
+import Home from "../Components/Home/Home";
+import Blog from "../Components/Blogs/Blog";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/home",
+        element: <Home></Home>,
+      },
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/login",
         element: <Login></Login>,
@@ -20,6 +32,10 @@ export const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/courses",

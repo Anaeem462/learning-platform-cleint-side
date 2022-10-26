@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthProvider";
@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, NavbarBrand } from "react-bootstrap";
 
 const Navbars = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -25,15 +25,16 @@ const Navbars = () => {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>
-            <Link to="/" className="text-decoration-none text-white ">
-              <img
-                src="https://images-platform.99static.com//KlBLMX8dQrcq6hZGnxf5HSnG29I=/8x543:525x1060/fit-in/500x500/99designs-contests-attachments/123/123360/attachment_123360235"
+            <NavLink to="/" className="text-light text-decoration-none me-3">
+              <Image
+                src="./courselogo.png"
                 alt=""
-                style={{ height: "30px", width: "30px" }}
-                className="text-light me-2"
-              />
-              Course Amar
-            </Link>
+                style={{ height: "30px" }}
+                roundedCircle
+                className="me-2 "
+              ></Image>
+              Course-Amar
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -41,36 +42,64 @@ const Navbars = () => {
 
             <Nav className="d-flex align-items-center">
               <Nav>
-                <Link
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-decoration-none me-3"
+                      : "text-light text-decoration-none me-3"
+                  }
+                >
+                  Home
+                </NavLink>
+              </Nav>
+              <Nav>
+                <NavLink
                   to="/courses"
-                  className="text-decoration-none text-white me-3"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-decoration-none me-3"
+                      : "text-light text-decoration-none me-3"
+                  }
                 >
                   Courses
-                </Link>
+                </NavLink>
               </Nav>
               <Nav>
-                <Link
-                  to="/courses"
-                  className="text-decoration-none text-white me-3"
+                <NavLink
+                  to="/faq"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-decoration-none me-3"
+                      : "text-light text-decoration-none me-3"
+                  }
                 >
                   FAQ
-                </Link>
+                </NavLink>
               </Nav>
               <Nav>
-                <Link
-                  to="/courses"
-                  className="text-decoration-none text-white me-3"
+                <NavLink
+                  to="/blog"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-decoration-none me-3"
+                      : "text-light text-decoration-none me-3"
+                  }
                 >
                   Blog
-                </Link>
+                </NavLink>
               </Nav>
               <Nav>
-                <Link
-                  to="/courses"
-                  className="text-decoration-none text-white me-3"
+                <NavLink
+                  to="/theme"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-primary text-decoration-none me-3"
+                      : "text-light text-decoration-none me-3"
+                  }
                 >
                   Theme
-                </Link>
+                </NavLink>
               </Nav>
               <Nav>
                 {user ? (
@@ -91,18 +120,26 @@ const Navbars = () => {
                     )}
                     <button
                       onClick={signOut}
-                      className="bg-dark text-light ms-2 border-0"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-primary text-decoration-none me-3"
+                          : "text-light text-decoration-none me-3"
+                      }
                     >
                       Log out
                     </button>
                   </div>
                 ) : (
-                  <Link
+                  <NavLink
                     to="/login"
-                    className="text-decoration-none text-white me-3"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary text-decoration-none me-3"
+                        : "text-light text-decoration-none me-3"
+                    }
                   >
                     Log in
-                  </Link>
+                  </NavLink>
                 )}
               </Nav>
             </Nav>
@@ -128,9 +165,9 @@ export default Navbars;
 //               src="/src/assets/logo.png"
 //               style={{ height: "30px" }}
 //             ></Image>
-//             <Link to="/" className="text-decoration-none text-white fs-2 m-2">
+//             <NavLink to="/" className="text-decoration-none text-white fs-2 m-2">
 //               Course Amar
-//             </Link>
+//             </NavLink>
 //           </Navbar.Brand>
 
 //           <div className="">
@@ -140,31 +177,31 @@ export default Navbars;
 //             />
 //             <Navbar.Collapse id="responsive-navbar-nav">
 //               <Nav className="m-lg-0 mt-2 d-flex align-items-center">
-//                 <Link
+//                 <NavLink
 //                   to="/courses"
 //                   className="text-decoration-none text-white m-2"
 //                 >
 //                   Courses
-//                 </Link>
+//                 </NavLink>
 //               </Nav>
 //               <Nav>
-// <Link to="/faq" className="text-decoration-none text-white m-2">
+// <NavLink to="/faq" className="text-decoration-none text-white m-2">
 //   {" "}
 //   FAQ
-// </Link>
+// </NavLink>
 //               </Nav>
 //               <Nav>
-// <Link
+// <NavLink
 //   to="/blog"
 //   className="text-decoration-none text-white m-3"
 // >
 //   Blog
-// </Link>
+// </NavLink>
 //               </Nav>
 //               <Nav>
-//                 <Link className="text-decoration-none text-white m-3">
+//                 <NavLink className="text-decoration-none text-white m-3">
 //                   theme
-//                 </Link>
+//                 </NavLink>
 //               </Nav>
 // <Nav>
 //   {user ? (
@@ -178,12 +215,12 @@ export default Navbars;
 //       <FaUser className="text-dark my-2"></FaUser>
 //     )
 //   ) : (
-//     <Link
+//     <NavLink
 //       to="/login"
 //       className="text-decoration-none text-white m-3"
 //     >
 //       Log in
-//     </Link>
+//     </NavLink>
 //   )}
 // </Nav>
 //             </Navbar.Collapse>
