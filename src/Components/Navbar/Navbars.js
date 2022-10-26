@@ -26,14 +26,7 @@ const Navbars = () => {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-primary text-decoration-none me-3"
-                  : "text-light text-decoration-none me-3"
-              }
-            >
+            <NavLink to="/" className="text-light text-decoration-none me-3">
               <Image
                 src="./courselogo.png"
                 alt=""
@@ -99,7 +92,7 @@ const Navbars = () => {
               </Nav>
               <Nav>
                 <NavLink
-                  to="/courses"
+                  to="/theme"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary text-decoration-none me-3"

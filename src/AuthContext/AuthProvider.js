@@ -23,30 +23,30 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
-    setLoading(false);
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
-    setLoading(false);
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const googleSignIn = () => {
-    setLoading(false);
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   const githubSignIn = () => {
-    setLoading(false);
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
   const logOut = () => {
-    setLoading(false);
+    setLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(true);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
