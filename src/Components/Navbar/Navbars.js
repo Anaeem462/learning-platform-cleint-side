@@ -137,7 +137,7 @@ const Navbars = () => {
                     </NavLink>
                     <button
                       onClick={signOut}
-                      className="bg-dark text-light ms-2 border-0"
+                      className="text-light ms-2 border-0"
                     >
                       Log out
                     </button>
