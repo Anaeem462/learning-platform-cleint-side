@@ -10,9 +10,9 @@ import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "./../Components/Error-page/ErrorPage";
 import Home from "../Components/Home/Home";
 import Blog from "../Components/Blogs/Blog";
-import ProfilePage from "../Components/PremiumPage/PremiumPage.js";
 import Faq from "../Components/Faq/Faq";
 import Themes from "../Components/Theme/Themes";
+import ProfilePage from "./../Components/ProfilePage/ProfilePage";
 
 export const routes = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ export const routes = createBrowserRouter([
           fetch(`https://course-server.vercel.app/course/${params.id}`),
       },
       {
-        path: "/profilePage",
+        path: "/profile",
         element: <ProfilePage></ProfilePage>,
       },
       {

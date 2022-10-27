@@ -112,15 +112,15 @@ const Navbars = () => {
               <Nav>
                 {user ? (
                   <div>
-                    <NavLink
-                      to="/profilepage"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "active-link me-3"
-                          : "text-light text-decoration-none me-3"
-                      }
-                    >
-                      {user?.photoURL ? (
+                    {user?.photoURL ? (
+                      <NavLink
+                        to="/profile"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "active-link me-3"
+                            : "text-light text-decoration-none me-3"
+                        }
+                      >
                         <Image
                           src={user.photoURL}
                           style={{ height: "25px" }}
@@ -128,13 +128,23 @@ const Navbars = () => {
                           roundedCircle
                           title={user.displayName}
                         ></Image>
-                      ) : (
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        to="/profile"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "active-link me-3"
+                            : "text-light text-decoration-none me-3"
+                        }
+                      >
                         <FaUser
                           className="text-primary"
                           title={user.displayName}
                         ></FaUser>
-                      )}
-                    </NavLink>
+                      </NavLink>
+                    )}
+
                     <button
                       onClick={signOut}
                       className={`text-light ms-2 border-0 ${themesNumber}`}
