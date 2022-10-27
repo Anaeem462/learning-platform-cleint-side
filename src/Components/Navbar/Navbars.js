@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 
 const Navbars = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [dark, setDark] = useState(false);
   const signOut = () => {
     logOut()
       .then((result) => {
@@ -93,14 +94,14 @@ const Navbars = () => {
               </Nav>
               <Nav>
                 <NavLink
-                  to="/theme"
+                  to="/themes"
                   className={({ isActive }) =>
                     isActive
                       ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
-                  Theme
+                  Themes
                 </NavLink>
               </Nav>
               <Nav>

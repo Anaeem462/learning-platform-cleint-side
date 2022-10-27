@@ -11,6 +11,8 @@ import ErrorPage from "./../Components/Error-page/ErrorPage";
 import Home from "../Components/Home/Home";
 import Blog from "../Components/Blogs/Blog";
 import ProfilePage from "../Components/PremiumPage/PremiumPage.js";
+import Faq from "../Components/Faq/Faq";
+import Themes from "../Components/Theme/Themes";
 
 export const routes = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ export const routes = createBrowserRouter([
       {
         path: "/profilePage",
         element: <ProfilePage></ProfilePage>,
+      },
+      {
+        path: "/faq",
+        element: <Faq></Faq>,
+      },
+      {
+        path: "/themes",
+        element: <Themes></Themes>,
       },
       {
         path: "/premiumPage/:id",
