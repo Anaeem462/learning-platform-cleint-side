@@ -20,6 +20,7 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const [themesNumber, setThemesNumber] = useState("bg-normal");
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -65,6 +66,8 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     resetPass,
+    themesNumber,
+    setThemesNumber,
   };
   return (
     <AuthContext.Provider value={authinfo}>{children}</AuthContext.Provider>

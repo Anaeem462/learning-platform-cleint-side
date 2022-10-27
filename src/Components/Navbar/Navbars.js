@@ -7,13 +7,13 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Nabar.css";
-
+import "../Theme/Themes.css";
 import { Image } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const Navbars = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const [dark, setDark] = useState(false);
+  const { user, logOut, themesNumber } = useContext(AuthContext);
+
   const signOut = () => {
     logOut()
       .then((result) => {
@@ -25,7 +25,12 @@ const Navbars = () => {
   };
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="primary">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        className={themesNumber}
+        variant="primary"
+      >
         <Container>
           <Navbar.Brand>
             <NavLink to="/" className="text-light text-decoration-none me-3">

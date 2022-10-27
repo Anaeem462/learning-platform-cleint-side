@@ -1,0 +1,13 @@
+.bg-dark {
+  background-color: rgba(13, 14, 14, 0.299);
+  color: white;
+}
+.bg-light {
+  background-color: rgba(32, 117, 166, 0.873);
+}
+.bg-normal {
+  background-color: rgba(43, 201, 175, 0.925);
+}
+.bg-monoki {
+  background-color: rgba(158, 160, 29, 0.888);
+}

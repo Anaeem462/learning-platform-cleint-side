@@ -1,10 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import { FaGift, FaGithubAlt, FaGoogle } from "react-icons/fa";
-
+import { AuthContext } from "../../AuthContext/AuthProvider";
+import "../Theme/Themes.css";
 const Footer = () => {
+  const { themesNumber } = useContext(AuthContext);
   return (
     <footer className="relative">
-      <div className=" absolute-bottom mt-5 bg-dark w-100 text-center pt-2 pb-2 text-light">
+      <div
+        className={`absolute-bottom mt-5 w-100 text-center pt-2 pb-2 text-light ${themesNumber}`}
+      >
         <p className="m-0 p-1">Copyright@: author</p>
         <p className="m-0 p-1">
           Abdullah Naeem <small>Web-developer</small>
