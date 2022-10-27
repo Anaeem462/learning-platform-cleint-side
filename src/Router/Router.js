@@ -51,11 +51,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/profilePage",
-        element: (
-          <PrivateRoute>
-            <ProfilePage></ProfilePage>
-          </PrivateRoute>
-        ),
+        element: <ProfilePage></ProfilePage>,
       },
       {
         path: "/premiumPage/:id",

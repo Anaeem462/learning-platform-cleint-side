@@ -6,8 +6,9 @@ import { AuthContext } from "../../AuthContext/AuthProvider";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Button, Image, NavbarBrand } from "react-bootstrap";
+import "./Nabar.css";
+
+import { Image } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const Navbars = () => {
@@ -23,7 +24,7 @@ const Navbars = () => {
   };
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="primary" variant="primary">
         <Container>
           <Navbar.Brand>
             <NavLink to="/" className="text-light text-decoration-none me-3">
@@ -47,7 +48,7 @@ const Navbars = () => {
                   to="/home"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary text-decoration-none me-3"
+                      ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
@@ -59,7 +60,7 @@ const Navbars = () => {
                   to="/courses"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary text-decoration-none me-3"
+                      ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
@@ -71,7 +72,7 @@ const Navbars = () => {
                   to="/faq"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary text-decoration-none me-3"
+                      ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
@@ -83,7 +84,7 @@ const Navbars = () => {
                   to="/blog"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary text-decoration-none me-3"
+                      ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
@@ -95,7 +96,7 @@ const Navbars = () => {
                   to="/theme"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary text-decoration-none me-3"
+                      ? "active-link me-3"
                       : "text-light text-decoration-none me-3"
                   }
                 >
@@ -105,20 +106,29 @@ const Navbars = () => {
               <Nav>
                 {user ? (
                   <div>
-                    {user?.photoURL ? (
-                      <Image
-                        src={user.photoURL}
-                        style={{ height: "25px" }}
-                        alt=""
-                        roundedCircle
-                        title={user.displayName}
-                      ></Image>
-                    ) : (
-                      <FaUser
-                        className="text-primary"
-                        title={user.displayName}
-                      ></FaUser>
-                    )}
+                    <NavLink
+                      to="/profilepage"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "active-link me-3"
+                          : "text-light text-decoration-none me-3"
+                      }
+                    >
+                      {user?.photoURL ? (
+                        <Image
+                          src={user.photoURL}
+                          style={{ height: "25px" }}
+                          alt=""
+                          roundedCircle
+                          title={user.displayName}
+                        ></Image>
+                      ) : (
+                        <FaUser
+                          className="text-primary"
+                          title={user.displayName}
+                        ></FaUser>
+                      )}
+                    </NavLink>
                     <button
                       onClick={signOut}
                       className="bg-dark text-light ms-2 border-0"
@@ -131,7 +141,7 @@ const Navbars = () => {
                     to="/login"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-primary text-decoration-none me-3"
+                        ? "active-link me-3"
                         : "text-light text-decoration-none me-3"
                     }
                   >

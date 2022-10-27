@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <section className="d-flex align-items-center h-100 p-4 bg-warning text-light">
-      <div className=" row d-flex flex-col align-items-center justify-content-enter px-2 mx-auto my-2">
+    <section>
+      <div className="  px-2 my-2 text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
-          className="col-6 w-40 h-40 text-gray-600"
+          className=" text-warning w-25 h-25"
         >
           <path
             fill="currentColor"
@@ -31,20 +31,15 @@ const ErrorPage = () => {
             points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"
           ></polygon>
         </svg>
-        <div className="max-w-md text-center col-6">
-          <h2 className="mb-8 font-extrabold text-9xl text-gray-600">
-            <span className="sr-only">Error</span>404
+        <div className="text-center text-warning">
+          <h2 className="">
+            <span className="sr-only fs-1 fw-bolder">Error</span> 404
           </h2>
-          <p className="text-2xl font-semibold md:text-3xl mb-8">
-            Sorry, we couldn't find this page.
-          </p>
-          <Link
-            to="/"
-            className="px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900"
-          >
-            <Button>Back to homepage</Button>
-          </Link>
+          <p className="text-primary">Sorry, we couldn't find this page.</p>
         </div>
+        <Link to="/" className="">
+          <Button>Back to homepage</Button>
+        </Link>
       </div>
     </section>
   );
