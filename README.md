@@ -1,3 +1,7 @@
+server-side-code-link : https://github.com/Anaeem462/learning-platform-server-side.git
+
+live-site-link : https://course-authentication-44aa0.web.app/home
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
